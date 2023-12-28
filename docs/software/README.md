@@ -270,7 +270,6 @@ def get_session_local(engine):
 def get_base():
     return declarative_base()
 
-# Usage
 engine = create_db_engine()
 SessionLocal = get_session_local(engine)
 Base = get_base()
@@ -285,26 +284,153 @@ from typing import Annotated, Generator
 from sqlalchemy.orm import Session
 
 def get_db() -> Generator[Session, None, None]:
+
+
     db = SessionLocal()
+
     try:
         yield db
 
     finally:
         db.close()
-
 def create_session_dependency() -> Annotated[Session, Depends]:
-   
-    return Annotated[Session, Depends(get_db)]
+return Annotated[Session, Depends(get_db)]
 
 dependency = create_session_dependency()
-
 ```
-
-
 
 ### Моделі
 
 #### models
+```python
+from Environment.database import Base
+from pydantic import BaseModel, Field
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, func
+import datetime
+from typing import Optional
+from uuid import UUID, uuid4
+
+
+
+class File(Base):
+    __tablename__ = 'file'
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    name = Column(String(255))
+    description = Column(String(255), nullable=True)
+    uploadDate = Column(DateTime, default=func.now())
+    lastEditTime = Column(DateTime, default=func.now())
+    format = Column(String(45))
+    hasVisualization = Column(Boolean)
+    authorId = Column(Integer)
+    country = Column(String(45))
+
+
+class FileBase(BaseModel):
+    name: str
+    description: str
+    lastEditTime: datetime.datetime
+    format: str
+    hasVisualization: bool
+    authorId: int
+    country: str
+
+
+class FileWithIDAndDate(FileBase):
+    id: int
+    uploadDate: datetime.datetime
+
+    class Config:
+        orm_mode = True
+
+
+
+class Request(Base):
+    __tablename__ = 'request'
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    target = Column(String(255))
+    type = Column(String(45))
+    date = Column(DateTime, default=func.now())
+    user_id = Column(Integer)
+
+
+class RequestBase(BaseModel):
+    target: str
+    type: str
+    user_id: int
+
+
+class RequestWithIDAndDate(RequestBase):
+    id: int
+    date: datetime.datetime
+
+    class Config:
+        orm_mode = True
+
+
+
+class Role(Base):
+    __tablename__ = 'role'
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    name = Column(String(45))
+    description = Column(String(255), nullable=True)
+
+
+class RoleBase(BaseModel):
+    name: str
+    description: Optional[str] = None
+
+
+class RoleWithID(RoleBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
+
+class Search(Base):
+    __tablename__ = 'search'
+    request_id = Column(Integer, primary_key=True, index=True, nullable=False)
+    file_id = Column(Integer, nullable=False)
+
+
+class SearchBase(BaseModel):
+    request_id: int
+    file_id: int
+
+
+
+
+class User(Base):
+    __tablename__ = 'user'
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    nickname = Column(String(45))
+    firstname = Column(String(45))
+    lastname = Column(String(45))
+    email = Column(String(255))
+    password = Column(String(255))
+    role_id = Column(Integer)
+
+
+class UserBase(BaseModel):
+    nickname: str
+    firstname: str
+    lastname: str
+    email: str
+    password: str
+    role_id: int
+
+
+class UserWithID(UserBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+```
+
+### Контролери
+
+#### routes
 ```python
 from fastapi import APIRouter, HTTPException, status
 from typing import List
@@ -335,14 +461,12 @@ async def update_file(file_id: int, file: FileBase, db: dependency):
     db.refresh(db_file)
     return db_file
 
-
 @file_router.get("", status_code=status.HTTP_200_OK, response_model=List[FileWithIDAndDate])
 async def read_all_files(db: dependency):
     files = db.query(File).all()
     if not files:
         raise HTTPException(status_code=404, detail="No files found")
     return files
-
 
 @file_router.get("{file_id}", status_code=status.HTTP_200_OK, response_model=FileWithIDAndDate)
 async def read_file(file_id: int, db: dependency):
@@ -363,7 +487,6 @@ async def delete_file(file_id: int, db: dependency):
 
 
 
-
 request_router = APIRouter()
 
 @request_router.post("", status_code=status.HTTP_201_CREATED, response_model=RequestBase)
@@ -377,7 +500,6 @@ async def create_request(request: RequestBase, db: dependency):
     db.commit()
     db.refresh(db_request)
     return db_request
-
 
 @request_router.get("", status_code=status.HTTP_200_OK, response_model=List[RequestWithIDAndDate])
 async def read_all_requests(db: dependency):
@@ -428,7 +550,6 @@ async def update_role(role_id: int, role: RoleBase, db: dependency):
     db.refresh(db_role)
     return db_role
 
-
 @role_router.get("", status_code=status.HTTP_200_OK, response_model=List[RoleWithID])
 async def read_all_roles(db: dependency):
     roles = db.query(Role).all()
@@ -451,7 +572,6 @@ async def delete_role(role_id: int, db: dependency):
     db.delete(role)
     db.commit()
     return None
-
 
 
 
@@ -500,7 +620,6 @@ async def delete_search(request_id: int, db: dependency):
 
 
 
-
 user_router = APIRouter()
 
 @user_router.post("", status_code=status.HTTP_201_CREATED, response_model=UserBase)
@@ -514,7 +633,6 @@ async def create_user(user: UserBase, db: dependency):
     db.commit()
     db.refresh(db_user)
     return db_user
-
 
 @user_router.put("{user_id}", status_code=status.HTTP_200_OK, response_model=UserBase)
 async def update_user(user_id: int, user: UserBase, db: dependency):
@@ -552,10 +670,8 @@ async def read_user(user_id: int, db: dependency):
 async def delete_user(user_id: int, db: dependency):
     user = db.query(User).filter(User.id == user_id).first()
 
-
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
-
 
     db.delete(user)
     db.commit()
