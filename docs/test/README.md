@@ -7,7 +7,7 @@
 
 ### Get (All)
 <p>
-   <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/1.jpg">
+  <img src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/1.jpg" alt="">
 </p>
 
 ### Post
