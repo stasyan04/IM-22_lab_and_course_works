@@ -7,82 +7,82 @@
 
 ### Get (All)
 <p>
-   ![src](https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/1.jpg)
+   <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/1.jpg"
 </p>
 
 ### Post
 Введення користувача
 <p>
-    <img src="./resources_tests/Users_post.png">
+    <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/2.jpg"
 </p>
 Відповідь сервера
 <p>
-    <img src="./resources_tests/Users_post_response.png">
+    <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/3.jpg"
 </p>
 
 ### Get/Id
 Введення користувача
 <p>
-    <img src="./resources_tests/Users_get.png">
+    <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/4.jpg"
 </p>
 Відповідь сервера
 <p>
-    <img src="./resources_tests/Users_get_response.png">
+    <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/5.jpg"
 </p>
 
 ### Put
 Введення користувача
 <p>
-    <img src="./resources_tests/Users_put.png">
+   <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/6.jpg"
 </p>
 Відповідь сервера
 <p>
-    <img src="./resources_tests/Users_put_response.png">
+    <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/7.jpg"
 </p>
 
 ### Delete
 Введення користувача
 <p>
-    <img src="./resources_tests/Users_delete.png">
+   <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/8.jpg"
 </p>
 Відповідь сервера
 <p>
-    <img src="./resources_tests/Users_delete_response.png">
+    <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/9.jpg"
 </p>
 
 ## Requests
 
 ### Get (All)
 <p>
-    <img src="./resources_tests/Requests_get_all.png">
+    <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/10.png"
 </p>
 
 ### Post
 Введення користувача
 <p>
-    <img src="./resources_tests/Requests_post.png">
+    <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/11.jpg"
 </p>
 Відповідь сервера
 <p>
-    <img src="./resources_tests/Requests_post_response.png">
+  <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/12.jpg"
 </p>
 
 ### Get/Id
 Введення користувача
 <p>
-    <img src="./resources_tests/Requests_get.png">
+    <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/13.jpg"
 </p>
 Відповідь сервера
 <p>
-    <img src="./resources_tests/Requests_get_response.png">
+    <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/14.jpg"
 </p>
 
 ### Delete
 Введення користувача
 <p>
-    <img src="./resources_tests/Requests_delete.png">
+    <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/15.jpg"
 </p>
 Відповідь сервера
 <p>
-    <img src="./resources_tests/Requests_delete_response.png">
+    <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/16.png"
 </p>
