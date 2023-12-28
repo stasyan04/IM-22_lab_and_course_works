@@ -13,7 +13,7 @@
 ### Post
 Введення користувача:
 <p>
-    <image src="https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/2.jpg">
+    <image src="https://raw.githubusercontent.com/stasyan04/IM-22_lab_and_course_works/master/photo/2.jpg">
 </p>
 Відповідь сервера
 <p>
