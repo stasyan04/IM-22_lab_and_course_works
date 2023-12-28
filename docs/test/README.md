@@ -7,7 +7,7 @@
 
 ### Get (All)
 <p>
-    <img src="./resources_tests/Users_get_all.png">
+   ![src](https://github.com/stasyan04/IM-22_lab_and_course_works/blob/master/photo/1.jpg)
 </p>
 
 ### Post
